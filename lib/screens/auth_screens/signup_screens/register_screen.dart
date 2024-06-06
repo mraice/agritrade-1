@@ -2,6 +2,8 @@ import 'package:agritrade/screens/auth_screens/signup_screens/verify_screen.dart
 import 'package:flutter/material.dart';
 import 'package:iconsax/iconsax.dart';
 import 'package:get/get.dart';
+import 'package:agritrade/screens/auth_screens/auth_service.dart';
+import 'dart:developer';
 
 class RegisterScreen extends StatefulWidget {
   const RegisterScreen({super.key});
@@ -11,6 +13,16 @@ class RegisterScreen extends StatefulWidget {
 }
 
 class _RegisterScreenState extends State<RegisterScreen> {
+  final _auth = AuthService();
+  final _fname = TextEditingController();
+  final _lname = TextEditingController();
+  final _username = TextEditingController();
+  final _email = TextEditingController();
+  final _cnic = TextEditingController();
+  final _ph = TextEditingController();
+  final _address = TextEditingController();
+  final _password = TextEditingController();
+
   bool loginAsAdminFlag = false;
   bool agreeTo = false;
   bool showPassword = true;
@@ -40,6 +52,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                       decoration: const InputDecoration(
                           prefixIcon: Icon(Iconsax.user),
                           labelText: "First Name"),
+                      controller: _fname,
                     ),
                   ),
                   const SizedBox(
@@ -49,7 +62,8 @@ class _RegisterScreenState extends State<RegisterScreen> {
                     child: TextFormField(
                       decoration: const InputDecoration(
                           prefixIcon: Icon(Iconsax.user),
-                          labelText: "First Name"),
+                          labelText: "Last Name"),
+                      controller: _lname,
                     ),
                   ),
                 ],
@@ -62,6 +76,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                 decoration: const InputDecoration(
                     labelText: "User Name",
                     prefixIcon: Icon(Iconsax.user_edit)),
+                controller: _username,
               ),
               const SizedBox(
                 height: 16,
@@ -70,6 +85,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
               TextFormField(
                 decoration: const InputDecoration(
                     labelText: "E-mail", prefixIcon: Icon(Iconsax.activity)),
+                controller: _email,
               ),
               const SizedBox(
                 height: 16,
@@ -78,6 +94,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
               TextFormField(
                 decoration: const InputDecoration(
                     labelText: "CNIC Number", prefixIcon: Icon(Iconsax.card)),
+                controller: _cnic,
               ),
 
               const SizedBox(
@@ -86,6 +103,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
               TextFormField(
                 decoration: const InputDecoration(
                     labelText: "Phone Number", prefixIcon: Icon(Iconsax.call)),
+                controller: _ph,
               ),
               const SizedBox(
                 height: 16,
@@ -93,6 +111,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
               TextFormField(
                 decoration: const InputDecoration(
                     labelText: "Address", prefixIcon: Icon(Iconsax.add)),
+                controller: _address,
               ),
               const SizedBox(
                 height: 16,
@@ -111,6 +130,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                         icon: Icon(
                             showPassword ? Iconsax.eye : Iconsax.eye_slash))),
                 obscureText: showPassword,
+                controller: _password,
               ),
 
               const SizedBox(
@@ -173,7 +193,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
               SizedBox(
                 width: double.infinity,
                 child: ElevatedButton(
-                  onPressed: () => Get.to(const VerifyScreen()),
+                  onPressed: _signup,
                   child: const Text("Create Account"),
                 ),
               ),
@@ -252,5 +272,16 @@ class _RegisterScreenState extends State<RegisterScreen> {
         ),
       ),
     );
+  }
+
+  _signup() async {
+    final user =
+        await _auth.createUserWithEmailAndPassword(_email.text, _password.text);
+    
+    if (user != null) {
+      log("User Created Succesfully");
+      Get.to(const VerifyScreen());
+    }
+
   }
 }

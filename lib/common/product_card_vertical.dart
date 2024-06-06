@@ -31,7 +31,7 @@ class ZProductCardVertical extends StatelessWidget {
           children: [
             ZRoundedContainer(
               height: 180,
-              padding: EdgeInsets.all(8),
+              padding: const EdgeInsets.all(8),
               backgroundColor: Colors.white,
               child: Stack(
                 children: [
@@ -70,7 +70,7 @@ class ZProductCardVertical extends StatelessWidget {
 
             // --- Details
             Padding(
-              padding: EdgeInsets.only(left: 8),
+              padding: const EdgeInsets.only(left: 8),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
@@ -78,7 +78,7 @@ class ZProductCardVertical extends StatelessWidget {
                     title: title,
                     smallSize: true,
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 24 / 2,
                   ),
                   ZBrandTitleWithVerification(
@@ -95,7 +95,7 @@ class ZProductCardVertical extends StatelessWidget {
               children: [
                 // --- Price
                 Padding(
-                  padding: EdgeInsets.only(left: 8),
+                  padding: const EdgeInsets.only(left: 8),
                   child: ZProductPriceText(
                     price: price,
                     isLarge: true,

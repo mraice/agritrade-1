@@ -16,10 +16,10 @@ class BiddingCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.symmetric(vertical: 12, horizontal: 16),
-      margin: EdgeInsets.only(bottom: 10),
+      padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 16),
+      margin: const EdgeInsets.only(bottom: 10),
       decoration: BoxDecoration(
-        borderRadius: BorderRadius.all(Radius.circular(12)),
+        borderRadius: const BorderRadius.all(Radius.circular(12)),
         color: Colors.grey.withOpacity(0.2),
       ),
       child: Row(
@@ -41,7 +41,7 @@ class BiddingCard extends StatelessWidget {
               ),
             ),
           ),
-          SizedBox(width: 12),
+          const SizedBox(width: 12),
 
           // Product Detail
           Expanded(
@@ -50,32 +50,32 @@ class BiddingCard extends StatelessWidget {
               children: [
                 Text(
                   title,
-                  style: Theme.of(context).textTheme.headline6,
+                  style: Theme.of(context).textTheme.titleLarge,
                 ),
-                SizedBox(height: 4),
+                const SizedBox(height: 4),
                 Text(
                   numberOfBids,
-                  style: TextStyle(color: Colors.grey),
+                  style: const TextStyle(color: Colors.grey),
                 ),
-                SizedBox(height: 2),
-                Divider(color: Colors.grey),
-                SizedBox(height: 2),
+                const SizedBox(height: 2),
+                const Divider(color: Colors.grey),
+                const SizedBox(height: 2),
                 Text(
                   currentBid,
-                  style: TextStyle(fontWeight: FontWeight.bold),
+                  style: const TextStyle(fontWeight: FontWeight.bold),
                 ),
-                SizedBox(height: 10),
+                const SizedBox(height: 10),
                 SizedBox(
                   width: double.infinity,
                   child: ElevatedButton(
                     onPressed: () => Get.snackbar("Product", "Bid Confirmed"),
-                    child: Text("Place on Bid"),
                     style: ElevatedButton.styleFrom(
-                      padding: EdgeInsets.symmetric(vertical: 12),
+                      padding: const EdgeInsets.symmetric(vertical: 12),
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(8),
                       ),
                     ),
+                    child: const Text("Place on Bid"),
                   ),
                 ),
               ],

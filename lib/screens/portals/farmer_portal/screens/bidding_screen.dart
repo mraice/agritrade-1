@@ -1,7 +1,5 @@
 import 'package:agritrade/common/bididng_card.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 
 class BiddingScreen extends StatelessWidget {
   const BiddingScreen({super.key});
@@ -14,7 +12,7 @@ class BiddingScreen extends StatelessWidget {
           padding: const EdgeInsets.symmetric(horizontal: 14.0),
           child: Column(
             children: [
-              SizedBox(
+              const SizedBox(
                 height: 70,
               ),
               Text(
@@ -24,14 +22,14 @@ class BiddingScreen extends StatelessWidget {
               ListView.builder(
                 itemCount: 7,
                 shrinkWrap: true,
-                physics: NeverScrollableScrollPhysics(),
+                physics: const NeverScrollableScrollPhysics(),
                 itemBuilder: (context, index) {
-                  return BiddingCard(
+                  return const BiddingCard(
                     imageUrl: "assets/products/product_1.jpeg",
                   );
                 },
               ),
-              SizedBox(
+              const SizedBox(
                 height: 20,
               ),
             ],

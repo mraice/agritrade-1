@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:agritrade/screens/auth_screens/signup_screens/forget_password.dart';
 import 'package:agritrade/screens/auth_screens/signup_screens/register_screen.dart';
 import 'package:agritrade/screens/navigation_bar.dart';
@@ -6,6 +8,9 @@ import 'package:agritrade/screens/portals/farmer_portal/navigation_bar.dart';
 import 'package:iconsax/iconsax.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:agritrade/screens/auth_screens/signup_screens/loginFailed.dart';
+
+import 'package:agritrade/screens/auth_screens/auth_service.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
@@ -15,6 +20,8 @@ class LoginScreen extends StatefulWidget {
 }
 
 class _LoginScreenState extends State<LoginScreen> {
+  final _auth = AuthService();
+
   bool rememberFlag = false;
   bool loginAsFarmerFlag = false;
   bool showPassword = false;
@@ -54,8 +61,9 @@ class _LoginScreenState extends State<LoginScreen> {
               ),
               TextFormField(
                 decoration: const InputDecoration(
-                    prefixIcon: Icon(Iconsax.direct_right),
-                    labelText: "E-mail",),
+                  prefixIcon: Icon(Iconsax.direct_right),
+                  labelText: "E-mail",
+                ),
                 controller: emailController,
               ),
               const SizedBox(
@@ -135,15 +143,7 @@ class _LoginScreenState extends State<LoginScreen> {
               SizedBox(
                 width: double.infinity,
                 child: ElevatedButton(
-                  onPressed: () {
-                    if(loginAsFarmerFlag == true){
-                      Get.offAll(const FarmerNavigationMenue());
-                    }else if(emailController.text == "admin" && passwordController.text == "admin"){
-                      Get.to(const AdminPortal());
-                    }else {
-                      Get.to(const NavigationMenu());
-                    }
-                  },
+                  onPressed: _login,
                   child: const Text("Sign in"),
                 ),
               ),
@@ -232,5 +232,25 @@ class _LoginScreenState extends State<LoginScreen> {
         ),
       ),
     );
+  }
+
+  _login() async {
+    final user = await _auth.loginUserWithEmailAndPassword(
+        emailController.text, passwordController.text);
+
+    if (user != null) {
+      log("User Logged In");
+      if (loginAsFarmerFlag == true) {
+        Get.offAll(const FarmerNavigationMenue());
+      } else if (emailController.text == "admin" &&
+          passwordController.text == "admin") {
+        Get.to(const AdminPortal());
+      } else {
+        Get.to(const loginFailed());
+      }
+    }
+    else{
+      Get.to(const loginFailed());
+    }
   }
 }

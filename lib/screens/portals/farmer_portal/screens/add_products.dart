@@ -67,7 +67,7 @@ class AddProductsScreen extends StatelessWidget {
                   child: const Text("Select Image"),
                 ),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 24,
               ),
               SizedBox(

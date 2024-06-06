@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "676663885645",
+    "project_id": "agritrade-5cfbe",
+    "storage_bucket": "agritrade-5cfbe.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:676663885645:android:b64c48d3041750cbbd0104",
+        "android_client_info": {
+          "package_name": "com.example.agritrade"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "676663885645-gaskjnr22j7abfbigps6j2cirerebamq.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB47j76UfsMKlx2ggT8vMnsG8MTUxXxfmY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "676663885645-gaskjnr22j7abfbigps6j2cirerebamq.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
